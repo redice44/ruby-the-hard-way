@@ -5,7 +5,10 @@ puts "Roosters #{100 - 25 * 3 % 4}"
 
 puts "Now I will count the eggs:"
 
-puts 3 + 2 + 1 - 5 + 4 % 2 - 1 / 4 + 6
+# 4 mod 2 = 0
+# 1 / 4 = 0
+# 3 + 2 + 1 - 5 + 0 - 0 + 6 = 7
+puts 3 + 2 + 1 - 5 + 4 % 2 - 1.0 / 4.0 + 6
 
 puts "Is it tru that 3 + 2 < 5 - 7?"
 
