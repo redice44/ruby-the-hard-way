@@ -2,10 +2,7 @@ module MainHall
   Room_name = 'Main Hall'
   Valid_directions = ['N', 'E', 'W']
   Description = 'tall pillars and long, candle lit tables'
-
-  def MainHall.far_description
-    return "the flickering canles on the tables of the #{Room_name}"
-  end
+  Far_description = "the flickering candles on the tables of the #{Room_name}"
 
   def MainHall.enter(previous_room)
     Room.enter(Room_name, previous_room)
@@ -24,9 +21,9 @@ module MainHall
   end
 
   def MainHall.move
-    Room.look("to the north (N) you see #{ThroneRoom.far_description}")
-    Room.look("to the east (E) you see #{Kitchen.far_description}")
-    Room.look("to the west (W) you see #{Dungeon.far_description}")
+    Room.look("to the north (N) you see #{ThroneRoom::Far_description}")
+    Room.look("to the east (E) you see #{Kitchen::Far_description}")
+    Room.look("to the west (W) you see #{Dungeon::Far_description}")
     move = Room.move(Valid_directions)
     case move
     when 'N'

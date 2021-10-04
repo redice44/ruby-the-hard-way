@@ -2,10 +2,7 @@ module ThroneRoom
   Room_name = 'Throne Room'
   Valid_directions = ['NE', 'S']
   Description = 'a dimly lit throne ahead of you. Armor stands line the musky, red carpet leading to the throne.'
-
-  def ThroneRoom.far_description
-    return 'a dim throne'
-  end
+  Far_description = 'a dim throne'
 
   def ThroneRoom.enter(previous_room)
     Room.enter(Room_name, previous_room)
@@ -24,8 +21,8 @@ module ThroneRoom
   end
 
   def ThroneRoom.move
-    Room.look("to the northeast (NE) you see a flickering candle in #{ButlerHallway.far_description}")
-    Room.look("to the south (S) you see #{MainHall.far_description}")
+    Room.look("to the northeast (NE) you see a flickering candle in #{ButlerHallway::Far_description}")
+    Room.look("to the south (S) you see #{MainHall::Far_description}")
     move = Room.move(Valid_directions)
     case move
     when 'NE'

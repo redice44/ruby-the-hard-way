@@ -2,10 +2,7 @@ module Kitchen
   Room_name = 'Kitchen'
   Valid_directions = ['N', 'W']
   Description = 'a wild scene of hatches and flesh flying through the air. A skeleton with embers for eyes at the center'
-  
-  def Kitchen.far_description
-    return 'a bustling kitchen'
-  end
+  Far_description = 'a bustling kitchen'
 
   def Kitchen.enter(previous_room)
     Room.enter(Room_name, previous_room)
@@ -24,8 +21,8 @@ module Kitchen
   end
 
   def Kitchen.move
-    Room.look("to the north (N) you see #{ButlerHallway.far_description}")
-    Room.look("to the west (W) you see #{MainHall.far_description}")
+    Room.look("to the north (N) you see #{ButlerHallway::Far_description}")
+    Room.look("to the west (W) you see #{MainHall::Far_description}")
     move = Room.move(Valid_directions)
     case move
     when 'N'
