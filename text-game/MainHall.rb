@@ -1,58 +1,33 @@
-module MainHall
-  Room_name = 'Main Hall'
-  Valid_directions = ['N', 'E', 'W']
-  Description = 'tall pillars and long, candle lit tables'
-  Far_description = "the flickering candles on the tables of the #{Room_name}"
+require "./Room"
+require "./StandardResponse.rb"
 
-  def MainHall.enter(previous_room)
-    Room.enter(Room_name, previous_room)
-    MainHall.decide
+class MainHall < Room
+  def initialize
+    super(
+      'Main Hall', 
+      'tall pillars and long, candle lit tables',
+      'the flickering candles on the tables of the Main Hall'
+    )
   end
 
-  def MainHall.decide
-    Room.look(Description)
-    decision = Room.move_or_act
-    case decision
-    when 'M'
-      MainHall.move
-    when 'A'
-      MainHall.act
-    end
-  end
-
-  def MainHall.move
-    Room.look("to the north (N) you see #{ThroneRoom::Far_description}")
-    Room.look("to the east (E) you see #{Kitchen::Far_description}")
-    Room.look("to the west (W) you see #{Dungeon::Far_description}")
-    move = Room.move(Valid_directions)
-    case move
-    when 'N'
-      ThroneRoom.enter(Room_name)
-    when 'E'
-      Kitchen.enter(Room_name)
-    when 'W'
-      Dungeon.enter(Room_name)
-    end
-  end
-
-  def MainHall.act
-    Room.look('an inviting seat at the table. Sit? (S)')
-    Room.look('a long crack in one of the pillars. Investigate? (I)')
-    action = Room.action(['S', 'I'])
+  def act
+    look('an inviting seat at the table. Sit? (S)')
+    look('a long crack in one of the pillars. Investigate? (I)')
+    action = action(['S', 'I'])
     case action
     when 'S'
-      MainHall.comfy_chair
+      comfy_chair
     when 'I'
-      MainHall.room_collapse
+      room_collapse
     end
   end
 
-  def MainHall.comfy_chair
+  def comfy_chair
     puts 'You sit down in the surprisingly comforatable chair. Your body relaxes in its cloud-like embrace. You comforatably drift into your final sleep.'
     StandardResponse.bad_end
   end
 
-  def MainHall.room_collapse
+  def room_collapse
     puts 'You walk over to the long crack and examine it. Curious if it is stable, you knock it with your hand. Dust shakes from the ceiling. Creeking strain of stone echos through the hall. You lean against the pill and slide to the ground, accepting the foreseen outcome.'
     StandardResponse.bad_end
   end

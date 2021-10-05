@@ -23,9 +23,11 @@ module StandardResponse
 
   def StandardResponse.bad_end
     puts "\n\nYou lose."
+    exit(0)
   end
   
   def StandardResponse.good_end
     puts "\n\nYou win!"
+    exit(0)
   end
 end
